@@ -1,0 +1,29 @@
+- name: 1
+  hosts: all
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: apt update
+    apt:
+      update_cache: yes
+      name: curl
+  
+  - name: UFW
+    ufw:
+      state: enabled
+      policy: allow   
+#	 rule: allow
+#         port: '1834'
+#         proto: tcp
+#         name: 8080
+     #     port: '8080'
+      #    rule: allow
+       #   proto: tcp
+        #name: 80
+         # port: '80'
+          #rule: allow
+          #proto: tcp
+        #name: reload
+         # state: reloaded    
+  
