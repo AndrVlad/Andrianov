@@ -1,0 +1,152 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+
+struct Firm {
+        unsigned int id;
+        std::string FIO;
+        float salary;
+        char job[15];
+        char gender [1];
+
+    };
+
+int main()
+{
+    char chooseSym;
+    std::string FIO_string,str1;
+    int i, numMale, numFemale, Fond, FondFemale, FondMale;
+    numMale = 0;
+    numFemale = 0;
+    Firm * pFirm;
+    pFirm = new Firm[1];
+
+    std::cout << "Input identificator of worker \n";
+    std::cin >> pFirm[0].id;
+    std::cout << "Input FIO of worker \n";
+    std::cin >> pFirm[0].FIO;
+//    FIO_string = pFirm[numString - 1].FIO;
+//    std::cout << "/n FIO STR : " << FIO_string << std::endl;
+//    getline(std::cin, pFirm->FIO);
+//    pFirm[numString - 1].FIO = FIO_string;
+    std::cout << "Input salary of worker \n";
+    std::cin >> pFirm[0].salary;
+    std::cout << "Input job of worker \n";
+    std::cin >> pFirm[0].job;
+    std::cout << "Input gender of worker \n";
+    std::cin >> pFirm[0].gender;
+
+
+    std:: cout << "\t\t Do you want do add more worker? \'y'\ - yes, \'n'\ - no \n";
+    std::cin >> chooseSym;
+
+        while ((chooseSym != 'y') || (chooseSym != 'n')) {
+            std::cout << "choose  : " << chooseSym;
+            std::cout << "Incorrect input, try again" << std::endl;
+            std::cin >> chooseSym;
+        }
+
+        if (chooseSym == 'n') {
+
+            std::cout << std::endl << pFirm[0].id << std::endl << pFirm[0].FIO << std::endl;
+            std::cout << pFirm[0].salary << std::endl << pFirm[0].job << std::endl;
+            std::cout << pFirm[0].gender << std::endl;
+            return 0;
+
+        } else if (chooseSym == 'y') {
+
+            int numString = 1;
+
+            while (chooseSym != 'x') {
+
+        if (chooseSym == 'y') {
+
+            numString++;
+            Firm * pFirmAdd;
+            pFirmAdd = new Firm[numString];
+
+
+                for (int i = 0; i < numString - 1; i++) {
+                    pFirmAdd[i] = pFirm[i];
+                }
+
+                delete [] pFirm;
+
+                pFirm = pFirmAdd;
+                std::cout << pFirm << "     pfirm add:  " << pFirmAdd;
+
+            std::cout << "Input identificator of worker \n";
+            std::cin >> pFirm[numString-1].id;
+            std::cout << "Input FIO of worker \n";
+            std::cin >> pFirm[numString-1].FIO;
+            std::cout << "Input salary of worker \n";
+            std::cin >> pFirm[numString-1].salary;
+            std::cout << "Input job of worker \n";
+            std::cin >> pFirm[numString-1].job;
+            std::cout << "Input gender of worker \n";
+            std::cin >> pFirm[numString-1].gender;
+
+        } else if (chooseSym == 'n') {
+
+            Fond = 0;
+            for (i = 0; i < numString; i++) {
+
+                Fond += pFirm[i].salary;
+                std::cout << pFirm[i].salary;
+
+            }
+
+                FondFemale = 0;
+                FondMale = 0;
+
+                for (i = 0; i < numString; i++) {
+
+                    if ((*pFirm[i].gender == 'M') || (*pFirm[i].gender == 'm')) {
+
+                        numMale++;
+                        FondMale += pFirm[i].salary;
+
+                    } else {
+
+                        numFemale++;
+                        FondFemale += pFirm[i].salary;
+                    }
+
+                }
+
+            for (i = 0; i < numString; i++) {
+
+                std::cout << std::endl << pFirm[i].id << std::endl << pFirm[i].FIO << std::endl;
+                std::cout << pFirm[i].salary << std::endl << pFirm[i].job << std::endl;
+                std::cout << pFirm[i].gender << std::endl;
+
+            }
+
+            std::cout << "Fond of salary in Firm = " << Fond << std::endl;
+            std::cout << "Num of Male workers in Firm = " << numMale << std::endl;
+            std::cout << "Num of Female workers in Firm = " << numFemale << std::endl;
+            std::cout << "Fond of salary of Male workers = " << FondMale << std::endl;
+            std::cout << "Fond of salary of Female workers = " << FondFemale << std::endl;
+
+            delete [] pFirm;
+            return 0;
+
+
+        } else {
+            std::cout << std::endl << "Error input, try again";
+        }
+
+        std:: cout << "\t\t Do you want do add more worker? \'y'\ - yes, \'n'\ - no \n";
+
+        while ((chooseSym != 'y') || (chooseSym != 'n')) {
+
+            std::cout << "Incorrect input, try again" << std::endl;
+            std::cin >> chooseSym;
+        }
+    }
+
+
+        }  // end of if-else
+
+
+}
