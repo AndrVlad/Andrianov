@@ -1,0 +1,305 @@
+#include <iostream>
+#include <conio.h>
+
+struct Engineer {
+    unsigned int id, salary, typeWorker;
+    char fio[50];
+    unsigned short int experience;
+    enum EDUCATION {second_ed = 1, higher_ed};
+    const char *typeEducation;
+
+    } empl_eng;
+
+struct Scientific {
+        unsigned int id, salary;
+        char fio[50];
+        unsigned short int experience;
+        enum ACADEMIC_DEGREE {candidate = 1, doctor, none1};
+        enum ACADEMIC_TITLE {docent = 1, professor, none2};
+        const char *degree;
+        const char *title;
+    } empl_sc;
+
+union VUZ {
+
+    struct Engineer empl_eng;
+    struct Scientific empl_sc;
+
+};
+
+int main()
+{
+    char input, choose;
+    unsigned short int i, start_cell , num_eng, num_sc, type, fundSalary;
+    unsigned short int & type_educ = type, & type_degr = type, & type_title = type;
+    num_eng = 0;
+    num_sc = 0;
+    start_cell = 0;
+    fundSalary = 0;
+    type_educ = 0;
+
+    while (input != 'X') {
+
+        std::cout << std::endl << "Choose number of operation \n \n";
+        std::cout << "1. Add new employee \n";
+        std::cout << "2. Show information about all employees in VUZ \n";
+        std::cout << "3. Show number of Engineer employees \n";
+        std::cout << "4. Show number of Scientific employees \n";
+        std::cout << "5. Show information about doctors of science \n";
+        std::cout << "6. Show engineers employees salary fund \n \n";
+        std::cout << "For exit input X \n";
+
+        std::cin >> input;
+
+            if (input == 'X') {
+                break;
+            }
+
+            union VUZ Employee[100];
+
+            switch (input) {
+                case '1': {
+
+                    std::cout << "Choose type of employee \n";
+                    std::cout << "1. Engineer \n";
+                    std::cout << "2. Scientific \n";
+
+                    std::cin >> choose;
+
+                        switch (choose) {
+                            case '1': {
+
+                                for (i = start_cell; i < start_cell + 1; i++) {
+
+                                    Employee[i].empl_eng.typeWorker = 1;
+                                    std::cout << "Input id \n";
+                                    (std::cin >> Employee[i].empl_eng.id).get();
+                                    std::cout << "Input FIO \n";
+                                    gets(Employee[i].empl_eng.fio);
+                                    std::cout << "Input work experience in years \n";
+                                    std::cin >> Employee[i].empl_eng.experience;
+
+                                    std::cout << "Choose type of education: " << std::endl;
+                                    std::cout << "1 - second education \n" << "2 - higher education \n";
+                                    std::cin >> type_educ;
+
+                                        while (type_educ != 1 && type_educ != 2) {
+
+                                            std::cout << std::endl << "\t Incorrect input, try again \n" << std::endl;
+                                            std::cout << "Choose type of education: " << std::endl;
+                                            std::cout << "1 - second education \n" << "2 - higher education \n";
+                                            std::cin >> type_educ;
+
+                                        }
+
+                                        switch (type_educ) {
+                                            case empl_eng.EDUCATION::second_ed: {
+
+                                                Employee[i].empl_eng.typeEducation = "Second";
+                                                break;
+                                            }
+                                            case empl_eng.EDUCATION::higher_ed: {
+
+                                                Employee[i].empl_eng.typeEducation = "Higher";
+                                                break;
+                                            }
+                                            default:
+                                                std::cout << std::endl << "\t Incorrect input, try again \n";
+                                                break;
+
+                                        }
+
+                                    std::cout << "Input salary \n";
+                                    std::cin >> Employee[i].empl_eng.salary;
+
+                                    fundSalary += Employee[i].empl_eng.salary;
+
+
+                                }
+
+                                    start_cell++;
+                                    num_eng++;
+                                    break;
+                                }
+
+                            case '2': {
+
+                                for (i = start_cell; i < start_cell + 1; i++) {
+
+                                    std::cout << "Input id \n";
+                                    (std::cin >> Employee[i].empl_sc.id).get();
+                                    std::cout << "Input FIO \n";
+                                    gets(Employee[i].empl_sc.fio);
+
+                                    std::cout << "Input experience in years \n";
+                                    std::cin >> Employee[i].empl_sc.experience;
+
+                                    std::cout << "Choose type of Academic Degree: " << std::endl;
+                                    std::cout << "1 - Candidate of Science \n" << "2 - Doctor of Science \n" << "3 - Nothing \n";
+
+                                    type_degr = 0;
+                                    std::cin >> type_degr;
+
+                                    while (type_degr != 1 && type_degr != 2 && type_degr != 3) {
+
+                                        std::cout << std::endl << "\t Incorrect input, try again \n";
+                                        std::cout << "Choose type of Academic Degree: " << std::endl;
+                                        std::cout << "1 - Candidate of Science \n" << "2 - Doctor of Science \n" << "3 - Nothing \n";
+                                        std::cin >> type_degr;
+                                    }
+
+
+                                        switch (type_degr) {
+                                            case empl_sc.ACADEMIC_DEGREE::candidate: {
+
+                                                Employee[i].empl_sc.degree = "Candidate of Science";
+                                                break;
+                                            }
+                                            case empl_sc.ACADEMIC_DEGREE::doctor: {
+
+                                                Employee[i].empl_sc.degree = "Doctor of Science";
+                                                break;
+                                            }
+                                            case empl_sc.ACADEMIC_DEGREE::none1: {
+
+                                                Employee[i].empl_sc.degree = "------";
+                                                break;
+                                            }
+
+                                        }
+
+                                    std::cout << "Choose type of Academic Title: " << std::endl;
+                                    std::cout << "1 - Docent \n" << "2 - Professor \n" << "3 - Nothing \n";
+
+                                    type_title = 0;
+                                    std::cin >> type_title;
+
+                                    while (type_title != 1 && type_title != 2 && type_title != 3) {
+
+                                        std::cout << std::endl << "\t Incorrect input, try again \n";
+                                        std::cout << "Choose type of Academic Title: " << std::endl;
+                                        std::cout << "1 - Docent \n" << "2 - Professor \n" << "3 - Nothing \n";
+                                        std::cin >> type_title;
+                                    }
+
+                                        switch (type_title) {
+                                            case empl_sc.ACADEMIC_TITLE::docent: {
+
+                                                Employee[i].empl_sc.title = "Docent";
+                                                break;
+                                            }
+                                            case empl_sc.ACADEMIC_TITLE::professor: {
+
+                                                Employee[i].empl_sc.title = "Professor";
+                                                break;
+                                            }
+                                            case empl_sc.ACADEMIC_TITLE::none2: {
+
+                                                Employee[i].empl_sc.title = "------";
+                                                break;
+                                            }
+
+                                        }
+
+
+                                    std::cout << "Input salary \n";
+                                    std::cin >> Employee[i].empl_sc.salary;
+                                }
+
+                                start_cell++;
+                                num_sc++;
+                                break;
+                            }
+
+                            default:
+                                std::cout << std::endl << "\t Incorrect input, try again \n";
+                                break;
+                        }
+
+                    break;
+                } // end of case 1
+
+                case '2': {
+
+                    std::cout << "Information about all employees of VUZ: \n";
+
+                        for (i = 0; i < start_cell; i++) {
+
+                            if (Employee[i].empl_eng.typeWorker == 1) {
+
+                                std::cout << "ID:              \t" << Employee[i].empl_eng.id << std::endl;
+                                std::cout << "FIO:             \t" << Employee[i].empl_eng.fio << std::endl;
+                                std::cout << "Experience:      \t" << Employee[i].empl_eng.experience << std::endl;
+                                std::cout << "Education:       \t" << Employee[i].empl_eng.typeEducation << std::endl;
+                                std::cout << "Salary:          \t" << Employee[i].empl_eng.salary << std::endl << std::endl;
+
+                            } else {
+
+                                    std::cout << "ID:              \t" << Employee[i].empl_sc.id << std::endl;
+                                    std::cout << "FIO:             \t" << Employee[i].empl_sc.fio << std::endl;
+                                    std::cout << "Experience:      \t" << Employee[i].empl_sc.experience << std::endl;
+                                    std::cout << "Academic Title:  \t" << Employee[i].empl_sc.title << std::endl;
+                                    std::cout << "Academic Degree: \t" << Employee[i].empl_sc.degree << std::endl;
+                                    std::cout << "Salary:          \t" << Employee[i].empl_sc.salary << std::endl << std::endl;
+                        }
+
+                    }
+
+                    break;
+                }
+
+                case '3': {
+
+                    std::cout << "Num of Engineer employeers = " << num_eng << std::endl;
+                    break;
+                }
+
+                case '4': {
+
+                    std::cout << "Num of Scientific employeers = " << num_sc << std::endl;
+                    break;
+                }
+
+                case '5': {
+
+                    std::cout << "Information about all doctors of science: \n";
+
+                        for (i = 0; i < start_cell; i++) {
+                            if (Employee[i].empl_sc.degree == "Doctor of Science") {
+                                std::cout << "ID:              \t" << Employee[i].empl_sc.id << std::endl;
+                                std::cout << "FIO:             \t" << Employee[i].empl_sc.fio << std::endl;
+                                std::cout << "Experience:      \t" << Employee[i].empl_sc.experience << std::endl;
+                                std::cout << "Academic Degree: \t" << Employee[i].empl_sc.degree << std::endl;
+                                std::cout << "Academic Title:  \t" << Employee[i].empl_sc.title << std::endl;
+                                std::cout << "Salary:          \t" << Employee[i].empl_eng.salary << std::endl << std::endl;
+                            }
+                        }
+
+                    break;
+                }
+
+                case '6': {
+                    std::cout << std::endl << "Fund of salary engineers =  " << fundSalary << std::endl;
+                    break;
+                }
+                case '7': {
+                    std::cout << std::endl << "sizeof VUZ = " << sizeof(VUZ) << std::endl;
+                    std::cout << std::endl << "sizeof engineer = " << sizeof(Engineer) << std::endl;
+                    std::cout << std::endl << "sizeof scientific = " << sizeof(Scientific) << std::endl;
+
+                    break;
+                }
+                default:
+                    std::cout << std::endl << "\t Incorrect input, try again \n";
+
+            } // end of main switch
+
+        std::cout << std::endl << "For continue press Enter. For EXIT use X " << std::endl;
+        input = getch();
+
+
+    } // end of while
+
+    return 0;
+
+}
