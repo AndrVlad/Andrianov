@@ -175,7 +175,7 @@ code segment
 	;xor ax,ax
 	mov al, [bp+4]
 	cmp al,9
-	jb LowNum
+	jbe LowNum
 	div bl
 	mov bh, ah
 	
