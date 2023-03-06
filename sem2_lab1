@@ -1,0 +1,110 @@
+#include <iostream>
+
+using namespace std;
+
+bool CheckEven(*str) {
+    int i = 0, j = 1;
+
+        if (j == 1) {
+            j++;
+            i++;
+        } else {
+            j--;
+            i++
+        }
+    CheckEven(str);
+    return j;
+}
+
+/*int index(int i) {
+    int counter = i;
+    counter++;
+
+} */
+
+int main()
+{
+    int j = 1;
+    int i = 0;
+    bool res;
+    char str[255];
+    cin.getline(str, 255);
+
+    //chekEven();
+
+    //char c = '\0';
+ /*   while (str[i] != '\0') {
+        chekEven(&j);
+        cout << "j = " << j << endl;
+        i++;
+
+    } */
+
+
+    //cout << str << endl;
+    //cout << i << endl;
+
+
+
+    //int size_str = size(str);
+
+  /*  int counter = 0, i = 0;
+
+    while (!(str[i]) == '\0') {
+        i++;
+        if (!(str[i] == ' ')) {
+            counter ++;
+        }
+
+    }
+
+    cout << counter;
+
+*/
+
+
+
+    return 0;
+}
+
+/*
+
+int num(char *str) {
+
+    bool chet, nechet;
+    //int i = 0;
+    if (str[i] != '\0') {
+        i++;
+        chet = false;
+        num(str);
+    }
+
+}
+
+
+ chekEven(int *j, int *i, char *str) {
+
+    if (str[*i] != '\0') {
+
+        if (*j == 1) {
+            (*j)++;
+        } else {
+            (*j)--;
+        }
+        i++;
+
+    cout << "j = " << *j << endl;
+
+    chekEven(&j, &i, &str);
+
+    } else {
+        return *j;
+    }
+
+    return *j;
+
+}
+
+
+*/
+
