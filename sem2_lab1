@@ -2,33 +2,77 @@
 
 using namespace std;
 
-bool CheckEven(*str) {
-    int i = 0, j = 1;
+int NumCounter(int num);
+int EvenOdd(int num);
 
-        if (j == 1) {
-            j++;
-            i++;
-        } else {
-            j--;
-            i++
-        }
-    CheckEven(str);
-    return j;
+int NumCounter (int num) {
+    if (num != 0) {
+        cout << "num " << num << endl;
+        EvenOdd(num);
+        // return NumCounter(num-1);
+    } else {
+        EvenOdd(num);
+    }
+    return num;
 }
 
-/*int index(int i) {
-    int counter = i;
-    counter++;
+int EvenOdd(int num) {
+    int n = num;
+    int i, j;
 
-} */
+
+        i++;
+        j--;
+    if (j == -1) {
+        cout << j << " odd" << endl;
+        j += 2;
+        } else if (j == 0) {
+            cout << j << "even" << endl;
+        }
+
+        if (num == 0) {
+        return j;
+    }
+
+    NumCounter(num-1);
+
+}
+
+
+int f1 (int num) {
+
+}
+
+
+
+/*
+int NextSym(char *str) {
+
+    int i = 0;
+    if (str[i] != '\0') {
+        NextSym(str);
+    }
+
+    return i;
+}
+
+*/
 
 int main()
 {
-    int j = 1;
     int i = 0;
-    bool res;
     char str[255];
-    cin.getline(str, 255);
+    cout << "Input string: " << endl;
+    cin.getline(str,255);
+
+    while (str[i] != '\0') {
+        cout << str[i];
+        i++;
+    }
+
+    cout << NumCounter(i);
+
+//    cout << NextSym(str);
 
     //chekEven();
 
@@ -106,5 +150,19 @@ int num(char *str) {
 }
 
 
-*/
+bool CheckEven(*str) {
+    int i = 0, j = 1;
 
+        if (j == 1) {
+            j++;
+            i++;
+        } else {
+            j--;
+            i++
+        }
+    CheckEven(str);
+    return j;
+}
+
+
+*/
