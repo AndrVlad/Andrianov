@@ -1,0 +1,69 @@
+#include <iostream>
+
+using namespace std;
+
+int is_palintrope(string *str) {
+
+    if (str[0] == 0) {
+        return true;
+    } else if (str[1] == 0) {
+        return true;
+    } else if (str[0] != str[str.size() - 1]) {
+        return false;
+    }
+
+    return is_palintrope(str[str.size()-1])
+
+}
+
+int main()
+{
+
+    int i = 0, sizeStr, counter;
+    string str;
+    cout << "Input string: " << endl;
+    cin >> str;
+
+    while (str[i] != '\0') {
+        //cout << str[i];
+        i++;
+    }
+
+    //cout << str.size();
+
+    cout << is_palintrope(str);
+
+
+    return 0;
+}
+
+/* Iterative
+
+sizeStr = i;
+    int res = sizeStr / 2;
+    cout << "res = " << res;
+    for (i = 0; i < res; i++, sizeStr--) {
+        if (!(str[sizeStr-1] == str[i])) {
+            cout << "Not palindrome" << endl;
+            break;
+        }
+    }
+
+
+
+    bool palintrop(string str1) {
+if (str1[0] == 0) return true;
+if (str1.size() == 1) return true;
+if (str1[0] != str1[str1.size() - 1]) return false;
+str1.erase(0, 1);
+str1.erase(str1.size() - 1);
+return palintrop(str1);
+}
+
+int main() {
+cout « "Vvedite str: ";
+getline(cin, str);
+cout « palintrop(str);
+}
+
+*/
