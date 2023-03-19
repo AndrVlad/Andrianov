@@ -5,6 +5,27 @@ using namespace std;
 int NumCounter(int num);
 int EvenOdd(int num);
 
+int EvenOdd(int num) {
+    int j;
+    j--;
+
+    if (j == -1) {
+        cout << j << " odd" << endl;
+        j += 2;
+        } else if (j == 0) {
+            cout << j << "even" << endl;
+        }
+
+        if (num == 0) {
+        return j;
+    }
+
+    return EvenOdd(num-1);
+
+}
+
+/* // trouble with saving j and i values
+
 int NumCounter (int num) {
     if (num != 0) {
         cout << "num " << num << endl;
@@ -19,7 +40,6 @@ int NumCounter (int num) {
 int EvenOdd(int num) {
     int n = num;
     int i, j;
-
 
         i++;
         j--;
@@ -38,12 +58,7 @@ int EvenOdd(int num) {
 
 }
 
-
-int f1 (int num) {
-
-}
-
-
+*/
 
 /*
 int NextSym(char *str) {
@@ -70,7 +85,7 @@ int main()
         i++;
     }
 
-    cout << NumCounter(i);
+    cout << EvenOdd(i);
 
 //    cout << NextSym(str);
 
